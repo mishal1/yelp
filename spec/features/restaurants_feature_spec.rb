@@ -19,8 +19,8 @@ feature 'restaurants' do
     context 'display restaurants' do
       scenario 'display restaurants' do
         visit '/restaurants'
-        expect(page).to have_content('KFC')
-        expect(page).not_to have_content('No restaurants yet')
+        expect(page).to have_content 'KFC'
+        expect(page).not_to have_content 'No restaurants yet'
       end
     end
 
@@ -30,7 +30,7 @@ feature 'restaurants' do
         click_link 'Add a restaurant'
         fill_in 'Name', with: 'McDonalds'
         click_button 'Create Restaurant'
-        expect(page).to have_content('McDonalds')
+        expect(page).to have_content 'McDonalds'
         expect(current_path).to eq '/restaurants'
       end
     end
@@ -39,8 +39,8 @@ feature 'restaurants' do
     	scenario 'lets a user view a restaurant' do
     		visit '/restaurants'
     		click_link 'KFC'
-    		expect(page).to have_content('KFC')
-    		expect(current_path).to eq("/restaurants/#{@kfc.id}")
+    		expect(page).to have_content 'KFC'
+    		expect(current_path).to eq "/restaurants/#{@kfc.id}"
     	end
     end
 
@@ -58,10 +58,12 @@ feature 'restaurants' do
     context 'deleting restaurants' do
     	scenario 'removes a restaurant when user clicks delete link' do
     		visit '/restaurants'
-    		click_link('Delete KFC')
-    		expect(page).not_to have_content('KFC')
-    		expect(page).to have_content('Restaurant deleted successfully')
+    		click_link 'Delete KFC'
+    		expect(page).not_to have_content 'KFC'
+    		expect(page).to have_content 'Restaurant deleted successfully'
     	end
     end
+
   end
+  
 end
