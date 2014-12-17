@@ -1,4 +1,5 @@
 require 'rails_helper'
+require_relative 'user_helper'
 
 feature 'users' do
   
@@ -15,17 +16,17 @@ feature 'users' do
       expect(page).not_to have_link 'Sign out'
     end
 
+    scenario "user shouldn't be able to add a restaurant" do
+      visit '/'
+      expect(page).not_to have_link 'Add a restaurant'
+    end
+
   end
 
   context "user signed in on the homepage" do
 
     before do
-      visit '/'
-      click_link 'Sign up'
-      fill_in 'Email', with: 'test@example.com'
-      fill_in 'Password', with: 'testtest'
-      fill_in 'Password confirmation', with: 'testtest'
-      click_button 'Sign up'
+      create_user
     end
 
     scenario "should see 'sign out' link" do

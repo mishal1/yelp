@@ -1,9 +1,11 @@
 require 'rails_helper'
+require_relative 'user_helper'
 
 feature 'reviewing' do
 
   before do
     Restaurant.create(name: 'KFC')
+    create_user
   end
 
   scenario 'Allows user to leave a review using a form' do

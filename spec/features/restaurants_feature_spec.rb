@@ -1,6 +1,11 @@
 require 'rails_helper'
+require_relative 'user_helper'
 
 feature 'restaurants' do
+
+  before do 
+    create_user
+  end
 
   context 'no restaurants have been added' do
 
