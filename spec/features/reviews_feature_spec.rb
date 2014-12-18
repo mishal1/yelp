@@ -1,7 +1,7 @@
 require 'rails_helper'
 require_relative 'user_helper'
 
-feature 'Reviewing' do
+feature 'Reviews' do
 
   before do
     Restaurant.create(name: 'KFC')
@@ -10,7 +10,6 @@ feature 'Reviewing' do
 
   scenario 'Allows user to leave a review using a form' do
     leave_review('so so', '3')
-    click_button 'Leave Review'
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content 'so so'
   end
@@ -26,13 +25,21 @@ feature 'Reviewing' do
     end
   end
 
-  scenario 'displays an avergae rating for all reviews' do
+  scenario 'a review can be deleted' do
     leave_review('so so', '3')
-    # click_button 'Sign out'
-    # create_user('mishal@mishal.com')
-    leave_review('Great', '5')
-    expect(page).to have_content 'Average Rating: 4'
+    visit '/restaurants'
+    click_link 'Delete Review'
+    expect(page).not_to have_content 'so so'
+    expect(page).to have_content 'Review deleted successfully'
   end
+
+  # scenario 'displays an average rating for all reviews' do
+  #   leave_review('so so', '3')
+  #   # click_button 'Sign out'
+  #   # create_user('mishal@mishal.com')
+  #   leave_review('Great', '5')
+  #   expect(page).to have_content 'Average Rating: 4'
+  # end
 
 
 end
