@@ -10,7 +10,10 @@ describe ReviewsHelper, type: :helper do
 
     it 'should have symbole stars' do
     	expect(helper.star_rating('5')).to eq '★★★★★'
+    end
 
+    it 'returns three balck stars and two white stars for three' do
+      expect(helper.star_rating('3')).to eq '★★★☆☆'
     end
 
   end
