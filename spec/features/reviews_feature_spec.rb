@@ -9,10 +9,7 @@ feature 'Reviewing' do
   end
 
   scenario 'Allows user to leave a review using a form' do
-    visit '/restaurants'
-    click_link 'Review KFC'
-    fill_in "Thoughts", with: "so so"
-    select '3', from: "Rating"
+    leave_review('so so', '3')
     click_button 'Leave Review'
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content 'so so'
@@ -28,5 +25,14 @@ feature 'Reviewing' do
       expect(page).to have_content 'error'
     end
   end
+
+  scenario 'displays an avergae rating for all reviews' do
+    leave_review('so so', '3')
+    # click_button 'Sign out'
+    # create_user('mishal@mishal.com')
+    leave_review('Great', '5')
+    expect(page).to have_content 'Average Rating: 4'
+  end
+
 
 end
