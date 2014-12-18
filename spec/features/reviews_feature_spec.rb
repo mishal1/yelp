@@ -42,5 +42,14 @@ feature 'Reviews' do
     expect(page).to have_content 'Average Rating: 4'
   end
 
+  scenario 'show  stars right' do
+    leave_review('so so', '3')
+    visit '/restaurants'
+    click_link 'Sign out'
+    create_user('mishal@mishal.com')
+    leave_review('Great', '5')
+    expect(page).to have_content('★★★★☆')
+  end
+
 
 end
