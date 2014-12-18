@@ -21,6 +21,12 @@ feature 'Users' do
       expect(page).not_to have_link 'Add a restaurant'
     end
 
+    scenario "a user cannot leave a review unless they are signed in" do
+      Restaurant.create(name: 'KFC')
+      visit '/'
+      expect(page).not_to have_link "Review KFC"
+    end
+
   end
 
   context "user signed in on the homepage" do
