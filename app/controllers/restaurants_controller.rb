@@ -1,4 +1,4 @@
-class RestaurantsController < ApplicationController
+class RestaurantsController < ApplicationController 
 
   before_action :authenticate_user!, :except => [:index, :show]
 
