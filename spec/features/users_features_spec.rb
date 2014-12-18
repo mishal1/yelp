@@ -1,7 +1,7 @@
 require 'rails_helper'
 require_relative 'user_helper'
 
-feature 'users' do
+feature 'Users' do
   
   context "user not signed in and on the homepage" do
 
@@ -26,7 +26,7 @@ feature 'users' do
   context "user signed in on the homepage" do
 
     before do
-      create_user
+      create_user('test@test.com')
     end
 
     scenario "should see 'sign out' link" do
@@ -38,6 +38,22 @@ feature 'users' do
       visit '/'
       expect(page).not_to have_link 'Sign in'
       expect(page).not_to have_link 'Sign up'
+    end
+
+    scenario "cannot edit a restaurant they didn't create" do
+      visit '/'
+      create_restaurant
+      click_link 'Sign out'
+      create_user('mishal@mishal.com')
+      expect(page).not_to have_link 'Edit McDonalds'
+    end
+
+    scenario "cannot delete a restaurant they didn't create" do
+      visit '/'
+      create_restaurant
+      click_link 'Sign out'
+      create_user('mishal@mishal.com')
+      expect(page).not_to have_link 'Delete McDonalds'
     end
 
   end

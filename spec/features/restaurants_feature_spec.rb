@@ -1,13 +1,14 @@
 require 'rails_helper'
 require_relative 'user_helper'
 
-feature 'restaurants' do
+feature 'Restaurants' do
 
-  before do 
-    create_user
-  end
 
   context 'no restaurants have been added' do
+
+    before do 
+     create_user('test@test.com')
+    end
 
     scenario 'should display a prompt to add a restaurant' do
       visit '/restaurants'
@@ -20,7 +21,8 @@ feature 'restaurants' do
   context 'with KFC in database' do
 
     before do
-        @kfc = Restaurant.create(name: 'KFC')
+      create_user('test@test.com')
+      @kfc = Restaurant.create(name: 'KFC')
     end
 
     context 'display restaurants' do
@@ -36,10 +38,7 @@ feature 'restaurants' do
     context 'creating restaurants' do
 
       scenario 'prompts user to fill out a form, then displays the new restaurant' do
-        visit '/restaurants'
-        click_link 'Add a restaurant'
-        fill_in 'Name', with: 'McDonalds'
-        click_button 'Create Restaurant'
+        create_restaurant
         expect(page).to have_content 'McDonalds'
         expect(current_path).to eq '/restaurants'
       end
@@ -60,11 +59,12 @@ feature 'restaurants' do
     context 'editing restaurants' do
 
       scenario "lets a user edit a restaurant" do
+        create_restaurant
         visit '/restaurants'
-        click_link 'Edit KFC'
-        fill_in 'Name', with: 'Kentucky Fried Chicken'
+        click_link 'Edit McDonalds'
+        fill_in 'Name', with: 'McDonald'
         click_button 'Update Restaurant'
-        expect(page).to have_content 'Kentucky Fried Chicken'
+        expect(page).to have_content 'McDonald'
         expect(current_path).to eq '/restaurants'
       end
 
@@ -73,9 +73,10 @@ feature 'restaurants' do
     context 'deleting restaurants' do
 
     	scenario 'removes a restaurant when user clicks delete link' do
+        create_restaurant
     		visit '/restaurants'
-    		click_link 'Delete KFC'
-    		expect(page).not_to have_content 'KFC'
+    		click_link 'Delete McDonalds'
+    		expect(page).not_to have_content 'McDonalds'
     		expect(page).to have_content 'Restaurant deleted successfully'
     	end
 
