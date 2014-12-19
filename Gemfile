@@ -37,6 +37,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'poltergeist'
 gem 'database_cleaner'
+gem 'paperclip'
 
 group :test do
   gem 'rspec-rails'
