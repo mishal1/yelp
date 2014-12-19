@@ -13,16 +13,17 @@ feature 'endorsing reviews' do
     expect(page).to have_content '0 endorsements'
   end
 
-  # scenario 'if a restaurant has 1 endorsement then the word endorsement will be singular', js: true do
-  #   click_link 'Endorse KFC'
-  #   expect(page).to have_content '1 endorsement'
-  # end
+  scenario 'if a restaurant has 1 endorsement then the word endorsement will be singular', js: true do
+    click_link 'Endorse'
+    expect(page).to have_content '1 endorsement'
+  end
 
   # scenario 'a user can endorse a review, which updates the review endorsement count' do
-  #   click_link 'Endorse KFC'
+  #   click_link 'Endorse'
   #   visit '/restaurants'
   #   create_user('mishal@mishal.com')
-  #   click_link "Endorse KFC"
+  #   leave_review('so so', '3')
+  #   click_link "Endorse", :match => :first
   #   expect(page).to have_content '2 endorsements'
   # end
 

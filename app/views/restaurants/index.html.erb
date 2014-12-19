@@ -20,7 +20,10 @@
     		<%= review.thoughts %>, <strong><%= review.rating %></strong>/5
         </li>
             <%= link_to "Delete Review", review_path(review), method: :delete %>
-            <p><%= review.endorsements.count %> endorsements</p>
+        <p>
+            <%= link_to "Endorse", review_endorsements_path(review), class: 'endorsement-link' %>
+            <span class="endorsements_count"><%= review.endorsements.count %></span> endorsements
+        </p>
     </ul>
         <% end %>
     <% else %>
