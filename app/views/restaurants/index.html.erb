@@ -19,7 +19,8 @@
     	<li>
     		<%= review.thoughts %>, <strong><%= review.rating %></strong>/5
         </li>
-            <%= link_to "Delete Review", restaurant_review_path(restaurant, review), method: :delete %>
+            <%= link_to "Delete Review", review_path(review), method: :delete %>
+            <p><%= review.endorsements.count %> endorsements</p>
     </ul>
         <% end %>
     <% else %>
