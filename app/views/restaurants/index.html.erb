@@ -2,6 +2,7 @@
   <% @restaurants.each do |restaurant| %>
     <h2><%= link_to "#{restaurant.name}", restaurant_path(restaurant) %></h2>
     <h3> Average Rating: <%= restaurant.average_rating.to_i %> <%= star_rating(restaurant.average_rating) %> </h3>
+    <%= image_tag restaurant.image.url(:thumb) %>
     
     <% if restaurant.user_id == @user_id %>
         <%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>
