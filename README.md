@@ -4,7 +4,7 @@ Week 8 at Makers Academy
 ##Context
 The task for the week was to create a Yelp clone.
 
-##The website has the following functionality:
+##Features:
 - Visitors can create new restaurants using a form, specifying a name and rating
 - Restaurants can be edited and deleted
 - Visitors can leave reviews for restaurants, providing a numerical score (1-5) and a comment about their experience
